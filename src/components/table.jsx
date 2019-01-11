@@ -7,6 +7,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Select from '@material-ui/core/Select';
+import Input from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 const styles = theme => ({
   root: {
@@ -19,11 +23,26 @@ const styles = theme => ({
   },
 });
 
-function SimpleTable(props) {
+function ScanTable(props) {
   const { classes } = props;
 
   return (
     <Paper className={classes.root}>
+
+          {/* <Select
+            multiple
+            value={this.state.name}
+            onChange={this.handleChange}
+            input={<Input id="select-multiple" />}
+            MenuProps={MenuProps}
+          >
+          {names.map(name => (
+            <MenuItem key={name} value={name} style={getStyles(name, this)}>
+              {name}
+             </MenuItem>
+          ))}
+          </Select> */}
+
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
@@ -65,8 +84,8 @@ function SimpleTable(props) {
   );
 }
 
-SimpleTable.propTypes = {
+ScanTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleTable);
+export default withStyles(styles)(ScanTable);
