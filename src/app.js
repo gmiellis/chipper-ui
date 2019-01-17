@@ -2,10 +2,12 @@ import React, {Component } from 'react';
 // import { Switch, Route } from 'react-router-dom';
 
 import Header from './components/header';
-import ScanTable from './components/table';
+// import ScanTable from './components/table';
 // import Table1 from './components/table1';
+import Table2 from './components/table2';
 
-import orderBy from "lodash/orderBy";
+
+// import orderBy from "lodash/orderBy";
 
 class App extends Component{
   constructor(props) {
@@ -28,7 +30,7 @@ class App extends Component{
         <Header scan={this.props.scan} />
         
         {/* <Table1 data={this.props.data} column={this.state.columnToQuery} /> */}
-        <ScanTable
+        {/* <ScanTable
           handleChange={this.handleChange}
           query={this.state.query}
           column={this.state.columnToQuery}
@@ -41,8 +43,8 @@ class App extends Component{
           )
             : this.props.data
           )} 
-        />
-
+        /> */}
+        <Table2 data={this.props.data}/>
 
     </div>
   )}
