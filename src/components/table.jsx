@@ -42,14 +42,14 @@ class ScanTable extends Component{
       };
     }
 
-    handleRows() {
-      this.setState({ row: this.state.value + 1 })
-    }
+    // handleRows() {
+    //   this.setState({ row: this.state.value + 1 })
+    // }
 
   render() {
   const { classes } = this.props;
-  const data = this.props.data;
 
+// console.log(data)
   return (
     <Paper className={classes.root}>
        <TextField
@@ -75,130 +75,89 @@ class ScanTable extends Component{
            </Select>
 <div>
         <Table className={classes.table}>
+
           <TableHead>
+
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Souce File</TableCell>
-              <TableCell align="left">Number of Imported Modules</TableCell>
               <TableCell align="left">Module Name</TableCell>
-              <TableCell align="left">Module Location</TableCell>
-              <TableCell align="left">Import</TableCell>
-              <TableCell align="left">Local</TableCell>
+              <TableCell align="left">number of</TableCell>
+              <TableCell align="left">source</TableCell>
+              <TableCell align="left">location</TableCell>
+              <TableCell align="left">imported as</TableCell>
+              <TableCell align="left">imported as local</TableCell>
+
+
             </TableRow>
+
           </TableHead>
+
           <TableBody>
-            {data.map(row => {
-              return (
 
-                // row.importedModules.length > 0 ?
-                
-                // <TableRow key={row.sourceFile}>
-                //   <TableCell component="th" scope="row">
-                //     {row.sourceFile}
-                //   </TableCell>
-                //   <TableCell align="right">{row.importedModules.length}</TableCell>
-                //   <TableCell align="left">
-                //     <ul>
-                //       {row.importedModules.map(res => {
-                //         return <li key={res.absolute}>{res.source}</li>
-                //         })
-                //       }
-                //     </ul>
-                //   </TableCell>
-                //   <TableCell align="left"> 
-                //     <ul>
-                //       {row.importedModules.map(res => {
-                //         return <li key={res.source}>{res.absolute}</li>
-                //         })
-                //       }
-                //     </ul></TableCell>
-                // </TableRow>
-                // :
-                // null
-                <TableRow key={this.state.row}>
-                  <TableCell align="right">{this.state.row}</TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.sourceFile}
-                    
-                  </TableCell>
-                  <TableCell align="right">{row.importedModules.length}</TableCell>
+            {this.props.data.map((row, i)   => {
+                return (
+            
+                  <TableRow key={i}>
 
-                  {row.importedModules.length > 0 ?
-  
-                  <TableCell align="left">
-                    
-                      {row.importedModules.map(res => {
-                        return <div key={res.absolute}>{res.source}</div>
-                        })
-                      }
-                    
-                  </TableCell>
-                    :
-                    <TableCell>
-                      
-                        <div key={row.importedModules.absolute}>None</div>
-                      
+                    <TableCell key={i}>
+                      {row.sourceFile}
                     </TableCell>
-                  }
 
-                  {row.importedModules.length > 0 ?
+                    <TableCell >
+                      {row.importedModules.length}
+                    </TableCell>
+                    <TableCell >
+                    {row.importedModules.map((res, j) => {
+                      return (
+                    <div key={j}>
+                      {res.source}
+                      </div>
+                    )})}
+                    </TableCell>
+                    <TableCell >
+                    {row.importedModules.map((res, g) => {
+                      return (
+                    <div key={g}>
+                      {res.absolute}
+                      </div>
+                    )})}
+                    </TableCell>
+                    <TableCell >
+                    {row.importedModules.map((res, g) => {
+                      return (
+                    <div key={g}>
+                      {res.imports.map(bob => {
+                        return (
+                          <div>
+                            {bob.imported}
+                            </div>
+                        )
+                      })}
+                      </div>
+                    )})}
+                    </TableCell>
+                    <TableCell >
+                    {row.importedModules.map((res, g) => {
+                      return (
+                    <div key={g}>
+                      {res.imports.map(bob => {
+                        return (
+                          <div>
+                            {bob.local}
+                            </div>
+                        )
+                      })}
+                      </div>
+                    )})}
+                    </TableCell>
 
-                  <TableCell align="left"> 
-                    
-                      {row.importedModules.map(res => {
-                        return <div key={res.source}>{res.absolute}</div>
-                        })
-                      }
-                    
-                  </TableCell>
-                  :
-                  <TableCell>
-                    
-                      <div key={row.importedModules.absolute}>None</div>
-                    
-                  </TableCell>
-                }
+              </TableRow>
+
+            )})} 
                 
-                {row.importedModules.length > 0 ?
-
-                  <TableCell align="left"> 
-                      {row.importedModules.map(res => 
-                        res.imports.map(imps => {
-                        return  <div key={imps.imported}>{imps.imported}</div>
-                        }))
-                      }
-                  </TableCell>
-                  :
-                  <TableCell>
                     
-                    <div key={row.index}>None</div>                    
-                  </TableCell>
-                  }
 
-                  {row.importedModules.length > 0 ?
-
-                  <TableCell align="left"> 
-                      {row.importedModules.map(res => 
-                        res.imports.map(imps => {console.log(imps.local)
-                        return  <div key={imps.local}>{imps.local}</div>
-                        
-                        }))
-                      }
-                  </TableCell>
-                  :
-                  <TableCell>
-                    
-                    <div key={row.index}>None</div>
-                    
-                  </TableCell>
-                  }
-                </TableRow>
-
-              );                
-            }
-            ) 
-            }
-          </TableBody>
+               
+         </TableBody>
         </Table>
         </div>
     </Paper>
