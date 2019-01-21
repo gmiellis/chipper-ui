@@ -16,9 +16,10 @@ const styles = theme => ({
   root: {
     width: '99.9%',
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
+    // overflowX: 'auto',
   },
   table: {
+    // overflowX: 'auto',
     // minWidth: 700,
   },
 });
@@ -42,14 +43,9 @@ class ScanTable extends Component{
       };
     }
 
-    // handleRows() {
-    //   this.setState({ row: this.state.value + 1 })
-    // }
-
   render() {
   const { classes } = this.props;
 
-// console.log(data)
   return (
     <Paper className={classes.root}>
        <TextField
@@ -57,12 +53,10 @@ class ScanTable extends Component{
           className={classes.textField}
           value={this.props.query}
           name='query'
-          onChange={(event, value) => this.props.handleChange(event)}
+          onChange={(event) => this.props.handleChange(event)}
           margin="normal"
         />   
-
            <Select
-             
              value={this.props.column}
              name='columnToQuery'
              MenuProps={MenuProps}
@@ -71,37 +65,28 @@ class ScanTable extends Component{
              <MenuItem value='sourceFile'>Source File</MenuItem>
              <MenuItem value='numberOfImportedModules'>Number of Imported Modules</MenuItem>
              <MenuItem value='moduleName'>Module Name</MenuItem>
-             <MenuItem value='moduleLocation'>Module Location</MenuItem>
+             <MenuItem value='absolute'>Module Location</MenuItem>
            </Select>
-<div>
+        <div>
         <Table className={classes.table}>
-
           <TableHead>
-
             <TableRow>
-              <TableCell align="left">Module Name</TableCell>
-              <TableCell align="left">number of</TableCell>
-              <TableCell align="left">source</TableCell>
+              <TableCell align="left">Source File</TableCell>
+              <TableCell align="left">number of modules</TableCell>
+              <TableCell align="left">module</TableCell>
               <TableCell align="left">location</TableCell>
               <TableCell align="left">imported as</TableCell>
               <TableCell align="left">imported as local</TableCell>
-
-
             </TableRow>
-
           </TableHead>
-
           <TableBody>
-
-            {this.props.data.map((row, i)   => {
+            {
+              this.props.data.map((row, i)   => {
                 return (
-            
                   <TableRow key={i}>
-
                     <TableCell key={i}>
                       {row.sourceFile}
                     </TableCell>
-
                     <TableCell >
                       {row.importedModules.length}
                     </TableCell>
@@ -125,9 +110,9 @@ class ScanTable extends Component{
                     {row.importedModules.map((res, g) => {
                       return (
                     <div key={g}>
-                      {res.imports.map(bob => {
+                      {res.imports.map((bob, d) => {
                         return (
-                          <div>
+                          <div key={d}>
                             {bob.imported}
                             </div>
                         )
@@ -139,9 +124,9 @@ class ScanTable extends Component{
                     {row.importedModules.map((res, g) => {
                       return (
                     <div key={g}>
-                      {res.imports.map(bob => {
+                      {res.imports.map((bob, m) => {
                         return (
-                          <div>
+                          <div key={m}>
                             {bob.local}
                             </div>
                         )
@@ -149,14 +134,8 @@ class ScanTable extends Component{
                       </div>
                     )})}
                     </TableCell>
-
               </TableRow>
-
             )})} 
-                
-                    
-
-               
          </TableBody>
         </Table>
         </div>

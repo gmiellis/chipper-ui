@@ -3,8 +3,6 @@ import React, {Component } from 'react';
 
 import Header from './components/header';
 import ScanTable from './components/table';
-// import Table1 from './components/table1';
-// import Table2 from './components/table2';
 
 
 import orderBy from "lodash/orderBy";
@@ -29,7 +27,6 @@ class App extends Component{
       <div>
         <Header scan={this.props.scan} />
         
-        {/* <Table1 data={this.props.data} column={this.state.columnToQuery} /> */}
         <ScanTable
           handleChange={this.handleChange}
           query={this.state.query}
@@ -44,7 +41,6 @@ class App extends Component{
             : this.props.data
           )} 
         />
-        {/* <Table2 data={this.props.data}/> */}
 
     </div>
   )}
